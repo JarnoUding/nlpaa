@@ -1,7 +1,7 @@
 {
-  "name": "phonegap-template-hello-world",
+  "name": "Nightlife party agenda",
   "version": "4.0.1",
-  "description": "> A Hello World template built with PhoneGap",
+  "description": "> Nightlife party agenda",
   "repository": {
     "type": "git",
     "url": "https://github.com/phonegap/phonegap-app-hello-world.git"
