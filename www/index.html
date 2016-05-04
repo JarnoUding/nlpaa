@@ -136,7 +136,7 @@ $( document ).ready(function() {
         });
     }
 
-        $(function() {
+        document.addEventListener("deviceready", function(){
             init();
 
             // fix date format
@@ -168,7 +168,7 @@ $( document ).ready(function() {
             }
         });
 
-        jQuery( document ).ready( function( $ ) {
+        document.addEventListener("deviceready", function(){
         var loadable = 0;
         var readclick = 0;
         var offset = 10;
@@ -216,7 +216,7 @@ $( document ).ready(function() {
 <script type="text/javascript" src="js/js.cookie.js"></script>
 <script type="text/javascript">
 idleTime = 0;
-$(document).ready(function(){
+document.addEventListener("deviceready", function(){
   jQuerylimit = 5;
   
   if (localStorage.getItem("pop_status") !== '1') {
