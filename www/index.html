@@ -10,6 +10,15 @@
     <title>Nightlife Party agenda</title>
 </head>
 <body class="front">
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+document.addEventListener('deviceready', function() {
+  navigator.splashscreen.hide();
+});
+$( document ).ready(function() {
+    navigator.splashscreen.hide();
+});
+</script>
 
     <div class="container front-container screen-container">
         <div class="col-xs-12">
@@ -62,7 +71,7 @@
         }
     </style>
     
-    <script type="text/javascript" src="js/index.js"></script>
+    
     <script type="text/javascript">
 
     function init(){
