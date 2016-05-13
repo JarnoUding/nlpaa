@@ -95,6 +95,55 @@
         }
     </style>
 
+<div class="subs-popup" style="display:none;">
+  
+  <!-- Begin MailChimp Signup Form -->
+  <div id="mc_embed_signup">
+    <div class="email-close">x</div>
+    <div id="pop-bg">
+      <form action="//nightlifepromotions.us13.list-manage.com/subscribe/post?u=bac073bba6d0ae7b922bed13a&amp;id=9bdb2b5758" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div class="col-xs-12">
+        <div id="mc_embed_signup_scroll">
+          <p style="text-transform: none;">Schrijf je in voor de nieuwsbrief en blijf altijd op de hoogte van de leukste feesten bij jou in de buurt!</p>
+        <div class="mc-field-group">
+          <label for="mce-EMAIL">Email<span class="asterisk">*</span>
+        </label>
+          <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL">
+        </div>
+        </div>
+      </div>
+      <div class="col-xs-6 m-t-h">
+        <div class="mc-field-group">
+          <label for="mce-FNAME">Voornaam<br/></label>
+          <input type="text" value="" name="FNAME" class="form-control" id="mce-FNAME">
+        </div>
+      </div>
+      <div class="col-xs-6 m-t-h">
+        <div class="mc-field-group">
+          <label for="mce-LNAME">Achternaam<br/></label>
+          <input type="text" value="" name="LNAME" class="form-control" id="mce-LNAME">
+        </div>
+      </div>
+
+        <div class="col-xs-12 m-t-h">
+        <div class="mc-field-group size1of2">
+          <label for="mce-MMERGE3-month">Leeftijd</label>
+              <div class="mc-field-group size1of2">
+                <input type="number" name="MMERGE5" class="form-control" value="" id="mce-MMERGE5">
+              </div>
+        </div>  <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display:none"></div>
+            <div class="response" id="mce-success-response" style="display:none"></div>
+          </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_bac073bba6d0ae7b922bed13a_9bdb2b5758" tabindex="-1" value=""></div>
+            <div class="clear"><input type="submit" style="background: #000; width: 100%; color: #fff;" value="Inschrijven" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary m-t-h"></div>
+        </div>
+
+      </div>
+      </form>
+    </div>
+  </div>
+
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/js.cookie.js"></script>
@@ -232,11 +281,19 @@
             //pop-ip handler
             idleTime = 0;
             jQuerylimit = 5;
-            if (localStorage.getItem("pop_status") !== '1') {
-              localStorage.setItem("pop_status", "1");
+            if (localStorage.getItem("pop_status") !== '123') {
+              localStorage.setItem("pop_status", "123");
               $('.subs-popup').show();
             }
-
+            $( "#mc_embed_signup" ).click(function() {
+                event.stopPropagation();
+              });
+              $('.email-close').click(function() {
+                $('.subs-popup').hide();
+              });
+              $('.subs-popup').click(function() {
+                $(this).hide();
+              });
         }
 
         init();
@@ -248,68 +305,9 @@
               event.preventDefault();
           }
         
-
     </script>
 
-<div class="subs-popup">
-  
-  <!-- Begin MailChimp Signup Form -->
-  <div id="mc_embed_signup">
-    <div class="email-close">x</div>
-    <div id="pop-bg">
-      <form action="//nightlifepromotions.us13.list-manage.com/subscribe/post?u=bac073bba6d0ae7b922bed13a&amp;id=9bdb2b5758" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      <div class="col-xs-12">
-        <div id="mc_embed_signup_scroll">
-          <p style="text-transform: none;">Schrijf je in voor de nieuwsbrief en blijf altijd op de hoogte van de leukste feesten bij jou in de buurt!</p>
-        <div class="mc-field-group">
-          <label for="mce-EMAIL">Email<span class="asterisk">*</span>
-        </label>
-          <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL">
-        </div>
-        </div>
-      </div>
-      <div class="col-xs-6 m-t-h">
-        <div class="mc-field-group">
-          <label for="mce-FNAME">Voornaam<br/></label>
-          <input type="text" value="" name="FNAME" class="form-control" id="mce-FNAME">
-        </div>
-      </div>
-      <div class="col-xs-6 m-t-h">
-        <div class="mc-field-group">
-          <label for="mce-LNAME">Achternaam<br/></label>
-          <input type="text" value="" name="LNAME" class="form-control" id="mce-LNAME">
-        </div>
-      </div>
 
-        <div class="col-xs-12 m-t-h">
-        <div class="mc-field-group size1of2">
-          <label for="mce-MMERGE3-month">Leeftijd</label>
-              <div class="mc-field-group size1of2">
-                <input type="number" name="MMERGE5" class="form-control" value="" id="mce-MMERGE5">
-              </div>
-        </div>  <div id="mce-responses" class="clear">
-            <div class="response" id="mce-error-response" style="display:none"></div>
-            <div class="response" id="mce-success-response" style="display:none"></div>
-          </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_bac073bba6d0ae7b922bed13a_9bdb2b5758" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" style="background: #000; width: 100%; color: #fff;" value="Inschrijven" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary m-t-h"></div>
-        </div>
-
-      </div>
-      </form>
-    </div>
-    <script type="text/javascript">
-      $( "#mc_embed_signup" ).click(function() {
-        event.stopPropagation();
-      });
-      $('.email-close').click(function() {
-        $('.subs-popup').hide();
-      });
-      $('.subs-popup').click(function() {
-        $(this).hide();
-      });
-    </script>
-  </div>
 
 </body>
 
