@@ -25,7 +25,7 @@
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
     <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
     <!-- Good default declaration:
@@ -114,6 +114,16 @@
           border-bottom: 1px solid #ccc;
           z-index: 9999;
           width: 100%;
+        }
+        #search-date{
+          font-size: 10px;
+        }
+        #search-title{
+          font-size: 10px;
+        }
+        #search-btn{
+          font-size: 10px;
+          padding: 9px;
         }
     </style>
 
@@ -315,8 +325,8 @@
             //pop-ip handler
             idleTime = 0;
             jQuerylimit = 5;
-            if (localStorage.getItem("pop_status") !== '122') {
-              localStorage.setItem("pop_status", "123");
+            if (localStorage.getItem("pop_status") !== '1233') {
+              localStorage.setItem("pop_status", "1233");
               $('.subs-popup').show();
             }
 
@@ -348,9 +358,18 @@
                 $(this).hide();
               });
 
+              
 
         }
         init();
+
+        $(document).on('focus', 'input, textarea', function() {
+          setTimeout(function() {
+          $('html, body').animate({
+              scrollTop: (document.body.scrollTop+36)
+           }, 100);
+          }, 0);
+        });
 
         // handle url opens
         function openUrl(url){
