@@ -43,26 +43,28 @@
 </head>
 
 <body class="front">
-    
-    <div class="container front-container screen-container">
-        <div class="col-xs-12" style="padding-top: 144px;">
-            <div class="fixed" style="border-bottom: 1px solid #dedede;">
-              <div class="banner" style="padding-top: 18px; width: 100%; background: url('img/party-banner.jpg'); background-size: cover;">
-                  <img id="app-logo" alt="Nightlife party agenda" src="img/logo-app.png">
-              </div>
-              <div class="search-container">
-                  <div class="col-xs-12 search-inner mob-no-pad">
-                      <div class="col-xs-12 mob-no-pad m-b-h">
-                        <form id="search-form" action="search.html" method="GET">
-                          <div class="col-xs-4 m-t-h" style="padding: 0 6px;"><input id="search-date" class="form-control datepicker" name="date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="datum"></div>
-                          <div class="col-xs-5 m-t-h" style="padding: 0 6px;"><input id="search-title" class="form-control" name="title" type="text" placeholder="titel"></div>
-                          <div class="col-xs-3 m-t-h" style="padding: 0 6px;"><input class="btn btn-primary" id="search-btn" style="background: #723F88; width: 100%;" type="submit" value="zoek"></div>
-                        </form>
-                      </div>
-                  </div>
-                </div>
+  <div class="header" style="border-bottom: 1px solid #dedede;">
+    <div class="banner" style="padding-top: 18px; width: 100%; background: url('img/party-banner.jpg'); background-size: cover;">
+        <img id="app-logo" alt="Nightlife party agenda" src="img/logo-app.png">
+    </div>
+    <div class="search-container">
+        <div class="col-xs-12 search-inner mob-no-pad">
+            <div class="col-xs-12 mob-no-pad m-b-h">
+              <form id="search-form" action="search.html" method="GET">
+                <div class="col-xs-4 m-t-h" style="padding: 0 6px;"><input id="search-date" class="form-control datepicker" name="date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="datum"></div>
+                <div class="col-xs-5 m-t-h" style="padding: 0 6px;"><input id="search-title" class="form-control" name="title" type="text" placeholder="titel"></div>
+                <div class="col-xs-3 m-t-h" style="padding: 0 6px;"><input class="btn btn-primary" id="search-btn" style="background: #723F88; width: 100%;" type="submit" value="zoek"></div>
+              </form>
             </div>
-            <div class="content screen-slider">
+        </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container-full no-p front-container screen-container">
+        <div class="col-xs-12 no-p" >
+            
+            <div class="main-content screen-slider">
                 <?php // e983upktxkea/items/$id ?>
 
                 <div class="hightlights-top-container">
@@ -77,7 +79,7 @@
             </div>
             <footer>
               <div class="col-sm-8 footer-left">
-                <p>uw advertentie ook hier?<br/><span>Mail naar <a href="mailto:info@nightlifepromotions.nl">info@nightlifepromotions.nl</a></span></p>
+                <p>uw advertentie ook hier?<br/><span>Mail naar: <a href="mailto:info@nightlifepromotions.nl">info@nightlifepromotions.nl</a></span></p>
               </div>
               <div class="col-sm-4 footer-right">
                 <p class="powered-by">Powered by:</p>
@@ -91,40 +93,138 @@
     </div>
 
     <style type="text/css">
-        .datepicker{
-            -webkit-appearance: none;
-           -moz-appearance:    none;
-           appearance:         none;
-            width: 100%;
-        }
-        .banner{
-          position: relative;
-          z-index: 99999;
-        }
-        .fixed-container{
-          height: 58px;
-          position: relative;
-          z-index: 9999;
-        }
-        .fixed{
-          position: fixed;
-          top: 0;
-          left: 0;
-          background: #fff;
-          border-bottom: 1px solid #ccc;
-          z-index: 9999;
+      .front{
+        position: relative;
+        float: left;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      .search-inner{
+        background: #fff;
+      }
+      .datepicker{
+          -webkit-appearance: none;
+         -moz-appearance:    none;
+         appearance:         none;
           width: 100%;
-        }
-        #search-date{
-          font-size: 10px;
-        }
-        #search-title{
-          font-size: 10px;
-        }
-        #search-btn{
-          font-size: 10px;
-          padding: 9px;
-        }
+      }
+      .banner{
+        position: relative;
+        z-index: 99999;
+      }
+      .fixed-container{
+        height: 58px;
+        position: relative;
+        z-index: 9999;
+      }
+      .header{
+        position: relative;
+        background: #fff;
+        border-bottom: 1px solid #ccc;
+        z-index: 9;
+        width: 100%;
+        float: left;
+      }
+      #search-date{
+        font-size: 10px;
+      }
+      #search-title{
+        font-size: 10px;
+      }
+      #search-btn{
+        font-size: 10px;
+        padding: 9px;
+      }
+      .content{
+        position: absolute;
+        top: 144px;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        right: 0;
+        float: left;
+        overflow-y: scroll;
+        padding-bottom: 0 !important;
+      }
+      .front-container{
+        margin: 0 !important;
+      }
+      .front .front-container footer .footer-left p {
+          margin-top: 6px;
+          font-size: 14px !important;
+          line-height: 18px;
+      }
+      .front .front-container footer .footer-left p span {
+          font-size: 11.3px !important;
+      }
+      .col-xs-3{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .col-xs-9{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .row{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .col-xs-3 img{
+        width: 100% !important;
+      }
+      .item-top-container{ background: #fff; float: left; width: 100%; }
+      .highlights-title{ margin: 0; background: #fff; }
+
+      .date{
+        background: #000;
+          color: #fff;
+          padding: 3px 6px 2px;
+          float: left;
+          font-size: 18px;
+          text-transform: uppercase;
+          margin: 0;
+      }
+      .datetime{
+        border-bottom: 1px solid #000;
+        float: left;
+        width: 100%;
+        margin-bottom: 12px;
+      }
+
+      .slide-inner .datetime{
+        float: left;
+        width: 100%;
+        margin-bottom: 12px;
+      }
+      
+      .slide-inner .date {
+          background: #000;
+          color: #fff;
+          padding: 3px 6px 2px;
+          float: left;
+          font-size: 18px !important;
+          text-transform: uppercase;
+      }
+      .front-container>div .row {
+    padding: 12px 0 0!important;
+}
+.screen-container{
+  float: left;
+  width: 100%;
+}
+.content .row .links{
+  margin-bottom: 0;
+}
+.front-container>div .row {
+    padding: 12px 0 0 0!important;
+    }
+    footer{
+      margin-top: 12px;
+    }
     </style>
 
 <div class="subs-popup" style="display:none;">
@@ -176,6 +276,7 @@
       </form>
     </div>
   </div>
+</div>
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
@@ -187,11 +288,14 @@
         var loadable = 0;
         var readclick = 0;
         var offset = 10;
-        function loadMore(){
-            if($(window).scrollTop() + $(window).height() > $(document).height()  - 50 && loadable==0) {
+        function loadMore(){     
+
+            if($('.content').scrollTop()  > ($('.screen-container').height() - 500) && loadable==0) {
                 loadable = 1;
+
                 $.ajax({
-                  url: 'http://nightlifepartyagenda.nl/e983upktxkea/items/'+offset,
+                  //url: 'http://nightlifepartyagenda.nl/e983upktxkea/items/'+offset,
+                  url: 'http://mediacompanion.nl/nlpa-mailer/content-test/highlights.php',
                   type: 'GET',
                   dataType: "JSON",
                   success: function (data) {
@@ -201,7 +305,7 @@
                       }
 
                       $.each( data, function( key, val ) {
-                        $(".item-top-container").append("<div class='row base-row row-"+val.id+"'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3'><img class='event-image' id='event-"+val.id+"' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up' id='colorlineup-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location' id='colorlocation-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-"+val.id+"'></div></div></div>");
+                        $(".item-top-container").append("<div class='row base-row row-"+val.id+"'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><img class='event-image' id='event-"+val.id+"' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 col-sm-9 col-md-9 col-lg-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up' id='colorlineup-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location' id='colorlocation-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-"+val.id+"'></div></div></div>");
 
                         if(val.link !== null  && val.link !== ""){
                           $("#link-container-"+val.id).append("<a class='link-btn' target='_BLANK' onclick='openUrl(\""+val.link+"\");'>Website</a>");
@@ -227,7 +331,8 @@
         // init get content
         function init(){
             // HIGHLIGHTS
-            $.getJSON( "http://nightlifepartyagenda.nl/e983upktxkea/highlights", function( data ) {
+            //$.getJSON( "http://nightlifepartyagenda.nl/e983upktxkea/highlights", function( data ) {
+            $.getJSON( "http://mediacompanion.nl/nlpa-mailer/content-test/highlights.php", function( data ) {
               if(data.length > 0){
 
                 $('.highlight-load').hide();
@@ -237,7 +342,7 @@
                 $( ".hightlights-top-container" ).append( "<h2 class='highlights-title'>Highlight<span>s</span>:</h2><div class='highlight-container row highlight' style='margin-bottom: 12px;'></div>" );
                 // append highlight item
                 $.each( data, function( key, val ) {
-                  $(".highlight-container").append("<div class='highlight-slide'><div class='slide-inner'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3'><img class='event-image' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up'><strong>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location'><strong>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-highlight-"+val.id+"'></div></div></div></div>");
+                  $(".highlight-container").append("<div class='highlight-slide'><div class='slide-inner'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><img class='event-image' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 col-sm-9 col-md-9 col-lg-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up'><strong>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location'><strong>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-highlight-"+val.id+"'></div></div></div></div>");
 
                     if(val.link !== null  && val.link !== ""){
                       $("#link-container-highlight-"+val.id).append("<a class='link-btn' target='_BLANK' onclick='openUrl(\""+val.link+"\");'>Website</a>");
@@ -277,10 +382,11 @@
             });
             // INIT ITEMS (20)
             var itemcounter = 0;
-            $.getJSON( "http://nightlifepartyagenda.nl/e983upktxkea/items/0", function( data ) {
+            //$.getJSON( "http://nightlifepartyagenda.nl/e983upktxkea/items/0", function( data ) {
+              $.getJSON( "http://mediacompanion.nl/nlpa-mailer/content-test/highlights.php", function( data ) {
               if(data.length > 0){
                 $.each( data, function( key, val ) {
-                  $(".item-top-container").append("<div class='row base-row row-"+val.id+"'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3'><img class='event-image' id='event-"+val.id+"' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up' id='colorlineup-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location' id='colorlocation-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-"+val.id+"'></div></div></div>");
+                  $(".item-top-container").append("<div class='row base-row row-"+val.id+"'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><img class='event-image' id='event-"+val.id+"' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 col-sm-9 col-md-9 col-lg-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up' id='colorlineup-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location' id='colorlocation-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-"+val.id+"'></div></div></div>");
 
                   if(val.link !== null  && val.link !== ""){
                     $("#link-container-"+val.id).append("<a class='link-btn' target='_BLANK' onclick='openUrl(\""+val.link+"\");'>Website</a>");
@@ -319,8 +425,9 @@
                 }
             });
             // handle load more content
-            $(window).scroll(function() {
+            $('.content').scroll(function() {
                 loadMore();
+
             });
             //pop-ip handler
             idleTime = 0;
@@ -336,10 +443,11 @@
               lastname = $('#mce-LNAME').val();
               dob = $('#mce-MMERGE5').val();
               url = 'http://mediacompanion.nl/nlpa-subscr.php?email='+email+'&firstname='+firstname+'&lastname='+lastname+'&dob='+dob;
+              navigator.notification.alert("U bent ingeschreven.",function(){}, "Nightlife partyagenda");
               $.ajax({
                 type: 'GET',
                 url: url,
-                success: function(){
+                success: function(data){
                   $('.subs-popup').hide();
                 }
               });

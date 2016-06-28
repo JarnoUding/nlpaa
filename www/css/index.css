@@ -73,6 +73,10 @@
 .front .front-container footer .footer-left p span{
 	font-size: 11px !important;
 }
+.no-p{
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
