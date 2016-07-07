@@ -69,8 +69,9 @@
 
                 <div class="hightlights-top-container">
                   <div class="loading-dark highlight-load"><img style="width: 24px; height: 24px;" src="img/loading-dark.gif"></div>
+                  <a class="ook-adverteren" href="mailto:info@nightlifepromotions.nl">Wilt u hier ook adverteren?</a>
                 </div>
-                <div class="item-top-container">
+                <div class="item-top-container" style="padding-top: 12px;">
                   <div class="loading-light init-load"><img style="width: 24px; height: 24px;" src="img/loading-light.gif"></div>
                 </div>
                 
@@ -79,7 +80,7 @@
             </div>
             <footer>
               <div class="col-sm-8 footer-left">
-                <p>uw advertentie ook hier?<br/><span>Mail naar: <a href="mailto:info@nightlifepromotions.nl">info@nightlifepromotions.nl</a></span></p>
+                <p>Wilt u hier ook adverteren?<br/><span>Mail naar: <a href="mailto:info@nightlifepromotions.nl">info@nightlifepromotions.nl</a></span></p>
               </div>
               <div class="col-sm-4 footer-right">
                 <p class="powered-by">Powered by:</p>
@@ -91,141 +92,7 @@
             </footer>
         </div>
     </div>
-
-    <style type="text/css">
-      .front{
-        position: relative;
-        float: left;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
-      .search-inner{
-        background: #fff;
-      }
-      .datepicker{
-          -webkit-appearance: none;
-         -moz-appearance:    none;
-         appearance:         none;
-          width: 100%;
-      }
-      .banner{
-        position: relative;
-        z-index: 99999;
-      }
-      .fixed-container{
-        height: 58px;
-        position: relative;
-        z-index: 9999;
-      }
-      .header{
-        position: relative;
-        background: #fff;
-        border-bottom: 1px solid #ccc;
-        z-index: 9;
-        width: 100%;
-        float: left;
-      }
-      #search-date{
-        font-size: 10px;
-      }
-      #search-title{
-        font-size: 10px;
-      }
-      #search-btn{
-        font-size: 10px;
-        padding: 9px;
-      }
-      .content{
-        position: absolute;
-        top: 144px;
-        bottom: 0;
-        width: 100%;
-        left: 0;
-        right: 0;
-        float: left;
-        overflow-y: scroll;
-        padding-bottom: 0 !important;
-      }
-      .front-container{
-        margin: 0 !important;
-      }
-      .front .front-container footer .footer-left p {
-          margin-top: 6px;
-          font-size: 14px !important;
-          line-height: 18px;
-      }
-      .front .front-container footer .footer-left p span {
-          font-size: 11.3px !important;
-      }
-      .col-xs-3{
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-      }
-      .col-xs-9{
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-      }
-      .row{
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-      }
-      .col-xs-3 img{
-        width: 100% !important;
-      }
-      .item-top-container{ background: #fff; float: left; width: 100%; }
-      .highlights-title{ margin: 0; background: #fff; }
-
-      .date{
-        background: #000;
-          color: #fff;
-          padding: 3px 6px 2px;
-          float: left;
-          font-size: 18px;
-          text-transform: uppercase;
-          margin: 0;
-      }
-      .datetime{
-        border-bottom: 1px solid #000;
-        float: left;
-        width: 100%;
-        margin-bottom: 12px;
-      }
-
-      .slide-inner .datetime{
-        float: left;
-        width: 100%;
-        margin-bottom: 12px;
-      }
-      
-      .slide-inner .date {
-          background: #000;
-          color: #fff;
-          padding: 3px 6px 2px;
-          float: left;
-          font-size: 18px !important;
-          text-transform: uppercase;
-      }
-      .front-container>div .row {
-    padding: 12px 0 0!important;
-}
-.screen-container{
-  float: left;
-  width: 100%;
-}
-.content .row .links{
-  margin-bottom: 0;
-}
-.front-container>div .row {
-    padding: 12px 0 0 0!important;
-    }
-    footer{
-      margin-top: 12px;
-    }
-    </style>
+  </div>
 
 <div class="subs-popup" style="display:none;">
   
@@ -290,7 +157,7 @@
         var offset = 10;
         function loadMore(){     
 
-            if($('.content').scrollTop()  > ($('.screen-container').height() - 500) && loadable==0) {
+            if($('.content').scrollTop()  > ($('.screen-container').height() - 800) && loadable==0) {
                 loadable = 1;
 
                 $.ajax({
@@ -330,6 +197,7 @@
 
         // init get content
         function init(){
+
             // HIGHLIGHTS
             $.getJSON( "http://nightlifepartyagenda.nl/e983upktxkea/highlights", function( data ) {
             //$.getJSON( "http://mediacompanion.nl/nlpa-mailer/content-test/highlights.php", function( data ) {
@@ -339,7 +207,13 @@
                   $('.init-load').hide();
 
                 // make highlight top container
-                $( ".hightlights-top-container" ).append( "<h2 class='highlights-title'>Highlight<span>s</span>:</h2><div class='highlight-container row highlight' style='margin-bottom: 12px;'></div>" );
+                $( ".hightlights-top-container" ).append( "<div class='highlight-title-container'><h2 class='highlights-title'>Highlight<span>s</span>:</h2><button id='pop-btn'><img src='img/btn.png'/></button></div><div class='highlight-container row highlight' style='margin-bottom: 0px !important; margin-top: 0px !important; padding: 0 !important;float: left;width: 100% !important;'></div>" );
+
+                $( "#pop-btn" ).click(function() {
+                  $('.subs-popup').show();
+                });
+
+                
                 // append highlight item
                 $.each( data, function( key, val ) {
                   $(".highlight-container").append("<div class='highlight-slide'><div class='slide-inner'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><img class='event-image' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 col-sm-9 col-md-9 col-lg-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up'><strong>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location'><strong>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-highlight-"+val.id+"'></div></div></div></div>");
@@ -382,8 +256,8 @@
             });
             // INIT ITEMS (20)
             var itemcounter = 0;
-              $.getJSON( "http://nightlifepartyagenda.nl/e983upktxkea/items/0", function( data ) {
-              //$.getJSON( "http://mediacompanion.nl/nlpa-mailer/content-test/highlights.php", function( data ) {
+            $.getJSON( "http://nightlifepartyagenda.nl/e983upktxkea/items/0", function( data ) {
+               //$.getJSON( "http://mediacompanion.nl/nlpa-mailer/content-test/highlights.php", function( data ) {
               if(data.length > 0){
                 $.each( data, function( key, val ) {
                   $(".item-top-container").append("<div class='row base-row row-"+val.id+"'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><img class='event-image' id='event-"+val.id+"' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 col-sm-9 col-md-9 col-lg-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up' id='colorlineup-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location' id='colorlocation-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-"+val.id+"'></div></div></div>");
@@ -456,15 +330,15 @@
             });
             
             $( "#mc_embed_signup" ).click(function() {
-                event.stopPropagation();
-              });
-              $('.email-close').click(function() {
-                $('.subs-popup').hide();
-              });
-              $('.subs-popup').click(function() {
-                $(this).hide();
-              });
-
+              event.stopPropagation();
+            });
+            $('.email-close').click(function() {
+              $('.subs-popup').hide();
+            });
+            $('.subs-popup').click(function() {
+              $(this).hide();
+            });
+            
               
 
         }
