@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="nl.nightlifepartyagenda" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Party Agenda</name>
+    <description>
+        De Nightlife Partyagenda App – Al je favoriete evenementen in één overzicht! Nightlife Partyagenda App is dé applicatie die jou altijd en overal de mogelijkheid biedt om snel en gemakkelijk naar muziek-events te zoeken, zodat je altijd weet waar je moet zijn!
+    </description>
+    <author email="info@mediacompanion.nl" href="http://mediacompanion.nl">
+        Media Companion B.V.
+    </author>
+    <content src="index.html" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="14" />
+    <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
+        <param name="URL_SCHEME" value="nightlifepartyagenda" />
+    </gap:plugin>
+    <icon src="icon.png" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+</widget>
