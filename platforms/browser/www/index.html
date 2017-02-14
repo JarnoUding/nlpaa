@@ -40,6 +40,29 @@
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Nightlife Party agenda</title>
+    <style type="text/css">
+    .title{
+      font-size: 3.3vw !important;
+    } 
+    .front-container>div .row .subtitle{
+      font-size: 2.8vw !important;
+    }
+    .front-container .line-up {
+      font-size: 2vw !important;
+    }
+    .front-container .location {
+        font-size: 2vw !important;
+    }
+    .content .row .links .link-btn{
+        font-size: 2vw !important;
+    }
+    .front-container>div .row .datetime .date {
+      font-size: 3vw!important;
+  }
+  .event-banner-container{
+    margin-top: 12px;
+  }
+    </style>
 </head>
 
 <body class="front">
@@ -51,9 +74,9 @@
         <div class="col-xs-12 search-inner mob-no-pad">
             <div class="col-xs-12 mob-no-pad m-b-h">
               <form id="search-form" action="search.html" method="GET">
-                <div class="col-xs-4 m-t-h" style="padding: 0 6px;"><input id="search-date" class="form-control datepicker" name="date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="datum"></div>
-                <div class="col-xs-5 m-t-h" style="padding: 0 6px;"><input id="search-title" class="form-control" name="title" type="text" placeholder="titel"></div>
-                <div class="col-xs-3 m-t-h" style="padding: 0 6px;"><input class="btn btn-primary" id="search-btn" style="background: #723F88; width: 100%;" type="submit" value="zoek"></div>
+                <div class="col-xs-4 m-t-h" style="padding: 0 12px;"><input id="search-date" class="form-control datepicker" name="date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="datum"></div>
+                <div class="col-xs-5 m-t-h" style="padding: 0 0px;"><input id="search-title" class="form-control" name="title" type="text" placeholder="titel"></div>
+                <div class="col-xs-3 m-t-h" style="padding: 0 12px;"><input class="btn btn-primary" id="search-btn" style="background: #723F88; width: 100%;" type="submit" value="zoek"></div>
               </form>
             </div>
         </div>
@@ -93,6 +116,77 @@
         </div>
     </div>
   </div>
+
+<div id="browser-container">
+  <div id="browser-menu">
+    <a class="browser-close" onclick="closeBrowser();">Done</a>
+  </div>
+  <div id="browser-frame-container">
+    <iframe id="browser-frame" scrolling="yes" src=""></iframe>
+  </div>
+  
+</div>
+
+<style type="text/css">
+  #browser-container {
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #696969;
+    z-index: 99999;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  #browser-container.active{
+    top: 0;
+  }
+  #browser-frame {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    background: url('img/browser-load.gif') center center no-repeat #696969;
+    -webkit-overflow-scrolling: touch;
+    border: none;
+    overflow-y: scroll;
+    padding: 0;
+    margin: 0;
+  }
+  #browser-menu {
+      position: relative;
+      top: 100%;
+      width: 100%;
+      padding-top: 24px;
+      height: 48px;
+      background: #212121;
+      border-bottom: 4px solid #696969;
+      -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  .active  #browser-menu{
+    top: 0;
+  }
+  .browser-close{
+    padding-left: 12px;
+    color: #fff;
+    text-decoration: none;
+  }
+  #browser-frame-container{
+    width:100% !important;
+    height:100% !important;
+    overflow:scroll !important;
+    -webkit-overflow-scrolling:touch !important;
+    position: relative;
+    z-index: 9999999;
+  }
+</style>
 
 <div class="subs-popup" style="display:none;">
   
@@ -273,7 +367,7 @@
                   $('.init-load').hide();
 
                 // make highlight top container
-                $( ".hightlights-top-container" ).append( "<div class='highlight-title-container' style='margin-top: -2px;'><h2 class='highlights-title'>Highlight<span>s</span>:</h2><button id='pop-btn' style='margin-top: 5px;'><img src='img/btn.png'/></button></div><div class='highlight-container row highlight' style='margin-bottom: 0px !important; margin-top: 0px !important; padding: 0 !important;float: left;width: 100% !important;'></div>" );
+                $( ".hightlights-top-container" ).append( "<div class='highlight-title-container' style='margin-top: -2px;'><h2 class='highlights-title'>Highlight<span>s</span>:</h2><button id='pop-btn' style='margin-top: 5px;'><img style='margin-top: 4px; margin-right: 4px;' src='img/btn.png'/></button></div><div class='highlight-container row highlight' style='margin-bottom: 0px !important; margin-top: 0px !important; padding: 0 !important;float: left;width: 100% !important;'></div>" );
 
                 $( "#pop-btn" ).click(function() {
                   $('.subs-popup').show();
@@ -422,8 +516,6 @@
             $('.subs-popup').click(function() {
               $(this).hide();
             });
-            
-              
 
         }
         init();
@@ -438,7 +530,24 @@
 
         // handle url opens
         function openUrl(url){
-            window.open(url, '_blank', 'location=yes');
+            // wdw = window.open(url, '_blank', 'location=yes');
+            // wdw.show();
+            
+            browser = $('#browser-container');
+            browserFrame = $('#browser-frame');
+            browserFrame.attr('src', url);
+            browser.addClass('active');
+            console.log(browserFrame.attr('src'));
+            console.log(url);
+            return false;
+            event.preventDefault();
+        }
+        function closeBrowser(){
+            url = '';
+            browser = $('#browser-container');
+            browserFrame = $('#browser-frame');
+            browserFrame.attr('src', url);
+            browser.removeClass('active');
             return false;
             event.preventDefault();
         }
@@ -480,6 +589,9 @@
   .front .highlight .link-btn{
     background: #fff !important;
     color: #000 !important;
+  }
+  .com-image{
+    padding-top: 12px;
   }
 </style>
 

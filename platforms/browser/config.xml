@@ -13,6 +13,8 @@
     <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
         <param name="URL_SCHEME" value="nightlifepartyagenda" />
     </gap:plugin>
+    <allow-intent href="*" />
+    <allow-navigation href="*" />
     <icon src="icon.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

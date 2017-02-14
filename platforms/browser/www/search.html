@@ -40,6 +40,19 @@
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Nightlife Party agenda</title>
+
+    <style type="text/css">
+
+        .content{
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+        }
+
+        body{ background: #000 !important; }
+    </style>
 </head>
 <body class="front">
 
@@ -50,14 +63,19 @@
             </div>
             <div class="content screen-slider">
 
-              <div class="item-top-container"></div>
+              <div class="item-top-container" style="min-height: 300px;"></div>
 
             </div>
             <footer>
-                <p>Powered by:</p>
-                <a href="#" >
-                    <img class="front-logo" src="img/logo.png">
+              <div class="col-sm-8 footer-left">
+                <p>Wilt u hier ook adverteren?<br/><span>Mail naar: <a href="mailto:info@nightlifepromotions.nl">info@nightlifepromotions.nl</a></span></p>
+              </div>
+              <div class="col-sm-4 footer-right">
+                <p class="powered-by">Powered by:</p>
+                <a onclick='openUrl("http://www.nightlifepromotions.nl/");' target="_BLANK">
+                  <img class="front-logo" src="img/logo.png"><Br/>
                 </a>
+              </div>
             </footer>
         </div>
     </div>
@@ -119,17 +137,16 @@
             }else{
                 title = QueryString.title;
             }
+            searchurl = 'http://nightlifepartyagenda.nl/e983upktxkea/search/'+QueryString.date+'/'+QueryString.title;
             $.ajax({
-                  url: 'http://nightlifepartyagenda.nl/e983upktxkea/search/'+QueryString.date+'/'+QueryString.title,
+                  url: searchurl,
                   type: 'GET',
                   dataType: "JSON",
                   success: function (data) {
-                        
-                    if( !$.isArray(data) ||  !data.length ) {
-                        
-                        $(".item-top-container").append("<div class='col-xs-12 mob-no-pad'><div class='col-xs-12 mob-no-pad'><div class='col-xs-12 m-t-h'><p><a href='index.html'>Terug naar overzicht</a></p><p>Zoeken op: "+date+" "+title+"</p></div></div></div><div class='col-xs-12'><div class='col-xs-12'><div class='col-xs-12'><p>Er zijn geen events gevonden.</p></div></div></div>");
 
-                        
+                    if( !$.isArray(data) ||  !data.length ) {
+
+                        $(".item-top-container").append("<div class='col-xs-12 mob-no-pad'><div class='col-xs-12 mob-no-pad'><div class='col-xs-12 m-t-h'><p><a href='index.html'>Terug naar overzicht</a></p><p>Zoeken op: "+date+" "+title+"</p></div></div></div><div class='col-xs-12'><div class='col-xs-12'><div class='col-xs-12'><p style='font-size: 12px;'>Er zijn geen events gevonden.</p></div></div></div>");
 
                     } else {
 
