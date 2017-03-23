@@ -85,7 +85,7 @@
                   <a class="ook-adverteren" href="mailto:info@nightlifepromotions.nl">Wilt u hier ook adverteren?</a>
                 </div>
                 <div class="item-top-container" style="padding-top: 12px;">
-                  <div class="loading-light init-load"><img style="width: 24px; height: 24px;" src="img/loading-light.gif"></div>
+                  <div class="loading-light init-load" style="display:none;"><img style="width: 24px; height: 24px;" src="img/loading-light.gif"></div>
                 </div>
                 
                 <div class="loading-light loadmore"><img style="width: 24px; height: 24px;" src="img/loading-light.gif"></div>
@@ -118,7 +118,7 @@
 </div>
 
 <style type="text/css">
-  #browser-container {
+    #browser-container {
     position: fixed;
     top: 100%;
     left: 0;
@@ -175,6 +175,22 @@
     -webkit-overflow-scrolling:touch !important;
     position: relative;
     z-index: 9999999;
+  }
+  .title{
+    white-space: nowrap;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+  .subtitle{
+    white-space: nowrap;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
   }
 </style>
 
@@ -236,114 +252,75 @@
         app.initialize();
 
         // load more content
-        var loadable = 0;
+        var loadable = 1;
         var readclick = 0;
         var offset = 10;
         var loadtype = 0;
         var excludeIdsAd = "0";
         var excludeIdsHighlight = "0";
-        function loadMore(){     
-                loadable = 1;
+        var listUrl = '';
 
-                $.ajax({
-                  url: 'http://nightlifepartyagenda.nl/e983upktxkea/items/'+offset,
-                  //url: 'http://mediacompanion.nl/nlpa-mailer/content-test/highlights.php',
+        window.setInterval(function(){
+          loadable = 1;
+        }, 5000);
+
+        function loadList(){
+          
+          if (loadable == 1){
+            loadable = 0;
+            listUrl = 'http://nightlifepartyagenda.nl/e983upktxkea/list/'+offset+'/'+excludeIdsHighlight+'/'+excludeIdsAd;
+            $.ajax({
+                  url: listUrl,
                   type: 'GET',
-                  dataType: "JSON",
-                  success: function (data) {
-                    
-                      $.each( data, function( key, val ) {
-                        $(".item-top-container").append("<div class='row base-row row-"+val.id+"'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><img class='event-image' id='event-"+val.id+"' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 col-sm-9 col-md-9 col-lg-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up' id='colorlineup-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location' id='colorlocation-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-"+val.id+"'></div></div></div>");
-
-                        if(val.link !== null  && val.link !== ""){
-                          $("#link-container-"+val.id).append("<a class='link-btn' target='_BLANK' onclick='openUrl(\""+val.link+"\");'>Website</a>");
-                        }
-                        if(val.ticket !== null  && val.ticket !== ""){
-                          $("#link-container-"+val.id).append("<a class='link-btn m-l-h' target='_BLANK' onclick='openUrl(\""+val.ticket+"\");'>Tickets</a>");
-                        }
-                      });
-
-                      offset = offset+10;
-                      loadable = 0;
-
-                  }
-              });
-              return false;
-
-            
-        }
-        function loadAd(){     
-
-            if($('.content').scrollTop()  > ($('.screen-container').height() - 800) && loadable==0) {
-                loadable = 1;
-
-                //alert('URL: http://nightlifepartyagenda.nl/e983upktxkea/ad/'+excludeIdsAd);
-
-                $.ajax({
-                  url: 'http://nightlifepartyagenda.nl/e983upktxkea/ad/'+excludeIdsAd,
-                  //url: 'http://mediacompanion.nl/nlpa-mailer/content-test/adsingle.php',
-                  type: 'GET',
-                  dataType: "JSON",
+                  dataType: "text",
                   success: function (data) {
 
-                      if(data !== 0){
+                      offset = offset+20;
+                      
 
-                          $(".item-top-container").append("<a target='_blank' class='com-image' onclick='openUrl(\""+data.link+"\");'><img src='http://nightlifepartyagenda.nl/images/ads/"+data.image+"' alt='"+data.name+"'></a>");
-                          excludeIdsAd = excludeIdsAd+"-"+data.id;
+                      // split on ::
+                      data = data.split("::");
+                      
+                      // each check count & type
+                      for (dataSet of data) {
+                        dataSet = JSON.parse(dataSet);
+                       
 
-                      }else{
-                        excludeIdsAd=0;
-                        loadable = 0;
-                        loadMore();
+                        // if is highlight
+                        if(dataSet.type == "highlight"){
+                          $(".item-top-container").append("<div class='event-banner-container row-"+dataSet.id+"'><img alt='"+dataSet.name+"' src='http://nightlifepartyagenda.nl/images/events/banners/"+dataSet.banner+"'><div id='link-container-highlight-"+data.id+"' class='action'><a class='btn btn-default no-border-radius' target='_BLANK' onclick='openUrl(\""+dataSet.link+"\");'>WEBSITE</a><a class='m-l-h btn btn-default no-border-radius' target='_BLANK' onclick='openUrl(\""+dataSet.ticket+"\");'>TICKETS</a></div></div>");
+                          excludeIdsHighlight = excludeIdsHighlight+"-"+dataSet.id;
+                        }
+
+                        // if is ad
+                        else if(dataSet.type == "ad"){
+                          $(".item-top-container").append("<a target='_blank' class='com-image' onclick='openUrl(\""+dataSet.link+"\");'><img src='http://nightlifepartyagenda.nl/images/ads/"+dataSet.image+"' alt='"+dataSet.name+"'></a>");
+                          excludeIdsAd = excludeIdsAd+"-"+dataSet.id;
+                        }
+
+                        // is events
+                        else if (dataSet.length){
+                          $.each( dataSet, function( key, val ) {
+                            $(".item-top-container").append("<div class='row base-row row-"+val.id+"'><div class='col-xs-12'><div class='datetime'><p class='date'>"+val.date+"</p></div></div><div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><img class='event-image' id='event-"+val.id+"' alt='"+val.name+"' src='http://nightlifepartyagenda.nl/images/events/"+val.image+"'></div><div class='col-xs-9 col-sm-9 col-md-9 col-lg-9 no-p-l'><p class='title'>"+val.name+"</p><p class='subtitle'>"+val.subtitle+"</p><div class='line-up' id='colorlineup-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Line up:</strong><br/>"+val.line_up+"</div><a class='read-more' style='display:none;' href='#'>Lees meer</a><p class='location' id='colorlocation-"+val.id+"'><strong style='color: rgb("+val.colour+")'>Location: </strong><span>"+val.location+"</span></p><div class='links pull-right' id='link-container-"+val.id+"'></div></div></div>");
+
+                            if(val.link !== null  && val.link !== ""){
+                              $("#link-container-"+val.id).empty().append("<a class='link-btn' target='_BLANK' onclick='openUrl(\""+val.link+"\");'>Website</a>");
+                            }
+                            if(val.ticket !== null  && val.ticket !== ""){
+                              $("#link-container-"+val.id).append("<a class='link-btn m-l-h' target='_BLANK' onclick='openUrl(\""+val.ticket+"\");'>Tickets</a>");
+                            }
+                          });
+                        }
+
+                        loadable = 1;
+
                       }
 
-                      loadable = 0;
                   }
               });
-              return false;
-             }
-            
+            }
+            return false;
         }
-        function loadHighlight(){
-                loadable = 1;
-
-                //alert('http://nightlifepartyagenda.nl/e983upktxkea/highlight/'+excludeIdsHighlight);
-
-                $.ajax({
-                  url: 'http://nightlifepartyagenda.nl/e983upktxkea/highlight/'+excludeIdsHighlight,
-                  //url: 'http://mediacompanion.nl/nlpa-mailer/content-test/highlightsingle.php',
-                  type: 'GET',
-                  dataType: "JSON",
-                  success: function (data) {
-
-
-                      if(data !== 0 && data.banner){
-                          $(".item-top-container").append("<div class='event-banner-container row-"+data.id+"'><img alt='"+data.name+"' src='http://nightlifepartyagenda.nl/images/events/banners/"+data.banner+"'><div id='link-container-highlight-"+data.id+"' class='action'><a class='btn btn-default no-border-radius' target='_BLANK' onclick='openUrl(\""+data.link+"\");'>WEBSITE</a><a class='m-l-h btn btn-default no-border-radius' target='_BLANK' onclick='openUrl(\""+data.ticket+"\");'>TICKETS</a></div></div>");
-
-                          // if(data.link !== null  && data.link !== ""){
-                          //   $("#link-container-highlight-"+data.id).append(" <a class='btn btn-default no-border-radius' target='_BLANK' onclick='openUrl(\""+data.link+"\");'>WEBSITE</a>");
-                          // }
-                          // if(data.ticket !== null  && data.ticket !== ""){
-                          //   $("#link-container-highlight-"+data.id).append("<a class='m-l-h btn btn-default no-border-radius' target='_BLANK' onclick='openUrl(\""+data.ticket+"\");'>TICKETS</a>");
-                          // }
-
-                          excludeIdsHighlight = excludeIdsHighlight+"-"+data.id;
-
-                      }else{
-                        excludeIdsHighlight=0;
-                        loadable = 0;
-                        loadMore();
-                      }
-
-                      loadable = 0;
-
-                  }
-              });
-              return false;
-
-            
-        }
-
 
         // init get content
         function init(){
@@ -357,7 +334,7 @@
                   $('.init-load').hide();
 
                 // make highlight top container
-                $( ".hightlights-top-container" ).append( "<div class='highlight-title-container' style='margin-top: -2px;'><h2 class='highlights-title'>Highlight<span>s</span>:</h2><button id='pop-btn' style='margin-top: 5px;'><img style='margin-top: 4px; margin-right: 4px; border-radius: 12px;' src='img/btn.png'/></button></div><div class='highlight-container row highlight' style='margin-bottom: 0px !important; margin-top: 0px !important; padding: 0 !important;float: left;width: 100% !important;'></div>" );
+                $( ".hightlights-top-container" ).append( "<div class='highlight-title-container' style='margin-top: -2px;'><h2 class='highlights-title'>Highlight<span>s</span>:</h2><button id='pop-btn' style='margin-top: 5px;'><img style='margin-top: 4px; margin-right: 4px; width: 120px;' src='img/btn.png'/></button></div><div class='highlight-container row highlight' style='margin-bottom: 0px !important; margin-top: 0px !important; padding: 0 !important;float: left;width: 100% !important;'></div>" );
 
                 $( "#pop-btn" ).click(function() {
                   $('.subs-popup').show();
@@ -440,37 +417,19 @@
                 $('#search-date').val(val);
               }
             });
+            
             // handle search button
             $( "#search-btn" ).click(function() {
                 if(!$("#search-date").val() && !$("#search-title").val()){
                     return false;
                 }
             });
+
             // handle load more content
             $('.content').scroll(function() {
-              if($('.content').scrollTop()  > ($('.screen-container').height() - 800) && loadable==0) {
-                if(loadtype==0){
-                  // LOAD ADVERT
-                  loadAd();
-                  loadtype=1;
-                  console.log("load advert");
-                }else if(loadtype==1){
-                  // LOAD EVENTS
-                  loadMore();
-                  loadtype=2
-                  console.log("load events 1");
-                }else if(loadtype==2){
-                  // LOAD HIGHLIGHT SINGLE
-                  loadHighlight();
-                  loadtype=3;
-                  console.log("load single");
-                }else if(loadtype==3){
-                  loadMore();
-                  loadtype=0;
-                  console.log("load events 2");
-                }
-              }
+                loadList();
             });
+
             //pop-ip handler
             idleTime = 0;
             jQuerylimit = 5;
